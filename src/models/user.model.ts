@@ -1,8 +1,8 @@
 import { Document, model, Schema } from "mongoose";
 
 export enum UserRole {
-  "ADMIN",
-  "USER"
+  ADMIN = "ADMIN",
+  USER = "USER"
 }
 
 export interface IUser extends Document {
@@ -24,10 +24,10 @@ const userSchema = new Schema<IUser>(
     roles: {
       type: [String],
       enum: Object.values(UserRole),
-      default: [UserRole.USER]
+      default: [UserRole.USER],
     },
-    approve: { type: Boolean, default: false },
-    phone: { type: String }
+    approve: { type: Boolean, default: true },
+    phone: { type: String },
   },
   { timestamps: true }
 );
