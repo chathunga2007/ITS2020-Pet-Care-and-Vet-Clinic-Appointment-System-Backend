@@ -1,0 +1,30 @@
+import express, { type Request, type Response } from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import "dotenv/config";
+
+const PORT = process.env.PORT || 3000;
+const URL = process.env.MONGO_LOCAL_URL || process.env.MONGO_URI || "";
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Health Check Route
+app.get("/", (req: Request, res: Response) => {
+  res.send("Pet Care & Vet Clinic API is Running!");
+});
+
+mongoose
+  .connect(URL)
+  .then(() => {
+    console.log("DB Connected!");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("DB Fail: ", err);
+  });
