@@ -2,10 +2,11 @@ import { Document, model, Schema } from "mongoose";
 
 export interface IDoctor extends Document {
   name: string;
-  specialization: string; // e.g., "Surgeon", "Dermatologist", "General Vet"
+  specialization: string;
   phone: string;
   email: string;
-  workingHours: string;   // e.g., "09:00 AM - 05:00 PM"
+  workingHours: string;
+  imageURL: string;
   status: "ACTIVE" | "INACTIVE";
   createdAt: Date;
   updatedAt: Date;
@@ -18,10 +19,11 @@ const doctorSchema = new Schema<IDoctor>(
     phone: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     workingHours: { type: String, required: true },
-    status: { 
-      type: String, 
-      enum: ["ACTIVE", "INACTIVE"], 
-      default: "ACTIVE" 
+    imageURL: { type: String, default: "" },
+    status: {
+      type: String,
+      enum: ["ACTIVE", "INACTIVE"],
+      default: "ACTIVE"
     },
   },
   { timestamps: true }
