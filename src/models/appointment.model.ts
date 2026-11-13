@@ -1,9 +1,9 @@
 import { Document, model, Schema, Types } from "mongoose";
 
 export interface IAppointment extends Document {
-    user: Types.ObjectId;     // Booking kala user (Owner)
-    pet: Types.ObjectId;      // Pet ID
-    doctor: Types.ObjectId;   // Doctor ID
+    user: Types.ObjectId;
+    pet: Types.ObjectId;
+    doctor: Types.ObjectId;
     appointmentDate: Date;
     reason: string;
     status: "PENDING" | "CONFIRMED" | "COMPLETED" | "CANCELLED";
