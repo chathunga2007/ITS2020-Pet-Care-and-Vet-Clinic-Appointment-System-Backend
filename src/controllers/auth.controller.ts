@@ -8,7 +8,7 @@ import bcrypt from "bcryptjs";
 
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET as string;
 
-// 1. REGISTER
+// Register User
 export const register = async (req: Request, res: Response) => {
   try {
     const { name, email, password, roles, phone } = req.body;
@@ -42,7 +42,7 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-// 2. LOGIN
+// Login User
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -90,7 +90,7 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-// 3. GET MY DETAILS (Protected: /me)
+// Get My Details
 export const getMyDetails = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -118,7 +118,7 @@ export const getMyDetails = async (req: AuthRequest, res: Response) => {
   }
 };
 
-// 4. ADMIN ACCESS (Protected: /admin)
+// Admin Only Access
 export const adminAccess = async (req: AuthRequest, res: Response) => {
   return res.status(200).json({
     message: "Admin access granted..!",
@@ -128,7 +128,7 @@ export const adminAccess = async (req: AuthRequest, res: Response) => {
   });
 };
 
-// 5. REFRESH TOKEN (Public: /refresh)
+// Get Refresh Token
 export const getRefreshToken = async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
   try {

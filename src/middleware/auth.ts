@@ -53,8 +53,8 @@ export const optionalAuthenticate = async (
       try {
         const payload = jwt.verify(token, JWT_SECRET);
         req.user = payload;
-      } catch {
-        // Ignore token error and continue as guest
+      } catch (err) {
+        console.error(err)
       }
     }
   }

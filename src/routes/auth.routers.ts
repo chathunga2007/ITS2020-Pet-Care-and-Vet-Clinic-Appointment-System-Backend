@@ -13,7 +13,7 @@ router.post("/refresh", getRefreshToken);
 // Private user route
 router.get("/me", authenticate, getMyDetails);
 
-// Admin-only route (Protected by authentication + ADMIN role)
+// Admin-only route 
 router.get("/admin", authenticate, authorize(UserRole.ADMIN), adminAccess);
 
 export default router;
