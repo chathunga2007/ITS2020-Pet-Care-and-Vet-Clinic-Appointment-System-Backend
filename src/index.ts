@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import "dotenv/config";
 import authRoutes from "./routes/auth.routers";
+import petRoutes from "./routes/pet.routers";
 
 const PORT = process.env.PORT || 3000;
 const URL = process.env.MONGO_LOCAL_URL || process.env.MONGO_URI || "";
@@ -20,6 +21,9 @@ app.get("/", (req: Request, res: Response) => {
 
 // Auth Routes Mount
 app.use("/api/auth", authRoutes);
+
+// Pet Routers
+app.use("/api/pets", petRoutes);
 
 mongoose
   .connect(URL)
