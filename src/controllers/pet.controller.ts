@@ -1,8 +1,9 @@
 import { Response } from "express";
 import { PetModel } from "../models/pet.model";
 import { AuthRequest } from "../middleware/auth";
+import { uploadImage } from "../services/upload.service";
 
-// 1. ADD NEW PET
+// Save Pet
 export const createPet = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -10,6 +11,8 @@ export const createPet = async (req: AuthRequest, res: Response) => {
     }
 
     const { name, type, breed, age, gender, medicalHistory } = req.body;
+
+    const imageURL = req.file ? await uploadImage(req.file, "pets") : "";
 
     const newPet = new PetModel({
       name,
@@ -19,6 +22,7 @@ export const createPet = async (req: AuthRequest, res: Response) => {
       gender,
       owner: req.user.sub,
       medicalHistory: medicalHistory || "",
+      imageURL,
       status: "ACTIVE",
     });
 
@@ -33,7 +37,7 @@ export const createPet = async (req: AuthRequest, res: Response) => {
   }
 };
 
-// 2. GET MY PETS (Active pets witharak pennayi)
+// Get Pet
 export const getMyPets = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -51,7 +55,7 @@ export const getMyPets = async (req: AuthRequest, res: Response) => {
   }
 };
 
-// 3. GET ALL PETS (Admin-only: Deleted nathi okkoma pets la)
+// Get All Pets
 export const getAllPets = async (_req: AuthRequest, res: Response) => {
   try {
     const pets = await PetModel.find({ status: { $ne: "DELETED" } }).populate("owner", "name email phone");
@@ -65,7 +69,7 @@ export const getAllPets = async (_req: AuthRequest, res: Response) => {
   }
 };
 
-// 4. UPDATE PET
+// Update Pet
 export const updatePet = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -87,9 +91,14 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
       return res.status(403).json({ message: "Forbidden: You can only update your own pets!" });
     }
 
+    let imageURL = pet.imageURL;
+    if (req.file) {
+      imageURL = await uploadImage(req.file, "pets");
+    }
+
     const updatedPet = await PetModel.findByIdAndUpdate(
       id,
-      { name, type, breed, age, gender, medicalHistory },
+      { name, type, breed, age, gender, medicalHistory, imageURL },
       { new: true, runValidators: true }
     );
 
@@ -103,7 +112,7 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
   }
 };
 
-// 5. SOFT DELETE PET (Status eka DELETED bawata path kirima)
+// Delete Pet
 export const deletePet = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -124,7 +133,6 @@ export const deletePet = async (req: AuthRequest, res: Response) => {
       return res.status(403).json({ message: "Forbidden: You can only delete your own pets!" });
     }
 
-    // Hard delete wenuwata status eka DELETED karanawa
     const deletedPet = await PetModel.findByIdAndUpdate(
       id,
       { status: "DELETED" },
