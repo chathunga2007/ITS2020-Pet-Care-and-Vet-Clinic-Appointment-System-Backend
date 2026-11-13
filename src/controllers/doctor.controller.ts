@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { DoctorModel } from "../models/doctor.model";
+import { uploadImage } from "../services/upload.service";
 
-// 1. ADD DOCTOR (Admin only)
+// Save Doctor
 export const createDoctor = async (req: Request, res: Response) => {
   try {
     const { name, specialization, phone, email, workingHours } = req.body;
@@ -11,12 +12,15 @@ export const createDoctor = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Doctor with this email already exists!" });
     }
 
+    const imageURL = req.file ? await uploadImage(req.file, "doctors") : "";
+
     const newDoctor = new DoctorModel({
       name,
       specialization,
       phone,
       email,
       workingHours,
+      imageURL,
       status: "ACTIVE",
     });
 
@@ -31,7 +35,7 @@ export const createDoctor = async (req: Request, res: Response) => {
   }
 };
 
-// 2. GET ALL DOCTORS (Public / Users & Admins lata balanna puluwan)
+// Get All Doctors
 export const getAllDoctors = async (_req: Request, res: Response) => {
   try {
     const doctors = await DoctorModel.find({ status: "ACTIVE" });
@@ -45,21 +49,27 @@ export const getAllDoctors = async (_req: Request, res: Response) => {
   }
 };
 
-// 3. UPDATE DOCTOR (Admin only)
+// Update Doctor
 export const updateDoctor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { name, specialization, phone, email, workingHours, status } = req.body;
 
-    const updatedDoctor = await DoctorModel.findByIdAndUpdate(
-      id,
-      { name, specialization, phone, email, workingHours, status },
-      { new: true, runValidators: true }
-    );
-
-    if (!updatedDoctor) {
+    const doctor = await DoctorModel.findById(id);
+    if (!doctor) {
       return res.status(404).json({ message: "Doctor not found!" });
     }
+
+    let imageURL = doctor.imageURL;
+    if (req.file) {
+      imageURL = await uploadImage(req.file, "doctors");
+    }
+
+    const updatedDoctor = await DoctorModel.findByIdAndUpdate(
+      id,
+      { name, specialization, phone, email, workingHours, status, imageURL },
+      { new: true, runValidators: true }
+    );
 
     return res.status(200).json({
       message: "Doctor updated successfully!",
@@ -71,7 +81,7 @@ export const updateDoctor = async (req: Request, res: Response) => {
   }
 };
 
-// 4. DELETE DOCTOR (Admin only - Soft delete or Hard delete)
+// Delete Doctor
 export const deleteDoctor = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
