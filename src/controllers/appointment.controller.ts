@@ -2,7 +2,7 @@ import { Response } from "express";
 import { AppointmentModel } from "../models/appointment.model";
 import { AuthRequest } from "../middleware/auth";
 
-// 1. CREATE APPOINTMENT (User booking an appointment for their pet)
+// Save Pet
 export const createAppointment = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -31,7 +31,7 @@ export const createAppointment = async (req: AuthRequest, res: Response) => {
   }
 };
 
-// 2. GET USER APPOINTMENTS (Logged-in user ge witharak appointments)
+// Get Appoinment
 export const getMyAppointments = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -52,7 +52,7 @@ export const getMyAppointments = async (req: AuthRequest, res: Response) => {
   }
 };
 
-// 3. GET ALL APPOINTMENTS (Admin-only: Clinic eke okkoma appointments)
+// Get All Appoinmnents
 export const getAllAppointments = async (_req: AuthRequest, res: Response) => {
   try {
     const appointments = await AppointmentModel.find()
@@ -70,7 +70,7 @@ export const getAllAppointments = async (_req: AuthRequest, res: Response) => {
   }
 };
 
-// 4. UPDATE APPOINTMENT STATUS (Confirm, Complete, or Cancel)
+// Update Appoinmnets
 export const updateAppointmentStatus = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -78,7 +78,7 @@ export const updateAppointmentStatus = async (req: AuthRequest, res: Response) =
     }
 
     const { id } = req.params;
-    const { status } = req.body; // PENDING, CONFIRMED, COMPLETED, CANCELLED
+    const { status } = req.body;
 
     const appointment = await AppointmentModel.findById(id);
     if (!appointment) {
@@ -98,7 +98,7 @@ export const updateAppointmentStatus = async (req: AuthRequest, res: Response) =
   }
 };
 
-// 5. CANCEL APPOINTMENT (User kenekta thanage appointment eka cancel kirima)
+// Delete Appoinment
 export const cancelAppointment = async (req: AuthRequest, res: Response) => {
   try {
     if (!req.user) {
@@ -112,12 +112,10 @@ export const cancelAppointment = async (req: AuthRequest, res: Response) => {
       return res.status(404).json({ message: "Appointment not found!" });
     }
 
-    // Check if the logged-in user owns this appointment
     if (appointment.user.toString() !== req.user.sub) {
       return res.status(403).json({ message: "Forbidden: You can only cancel your own appointments!" });
     }
 
-    // Already completed or cancelled nam change karanna ba
     if (appointment.status === "COMPLETED" || appointment.status === "CANCELLED") {
       return res.status(400).json({ 
         message: `Cannot cancel an appointment that is already ${appointment.status.toLowerCase()}!` 
