@@ -3,6 +3,7 @@ import { adminAccess, getMyDetails, getRefreshToken, login, register } from "../
 import { authenticate } from "../middleware/auth";
 import { authorize } from "../middleware/role";
 import { UserRole } from "../models/user.model";
+import { forgotPassword, resetPassword } from "../controllers/auth.controller";
 
 const router = Router();
 
@@ -15,5 +16,8 @@ router.get("/me", authenticate, getMyDetails);
 
 // Admin-only route 
 router.get("/admin", authenticate, authorize(UserRole.ADMIN), adminAccess);
+
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 
 export default router;
