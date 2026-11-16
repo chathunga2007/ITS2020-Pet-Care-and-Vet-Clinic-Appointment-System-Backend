@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.routers";
 import petRoutes from "./routes/pet.routers";
 import doctorRoutes from "./routes/doctor.routers";
 import appointmentRoutes from "./routes/appointment.routers";
+import { doctorScheduleRouter } from "./routes/doctor-schedule.routers";
 
 const PORT = process.env.PORT || 3000;
 const URL = process.env.MONGO_LOCAL_URL || process.env.MONGO_URI || "";
@@ -32,6 +33,9 @@ app.use("/api/doctors", doctorRoutes);
 
 // Appoinment Routers
 app.use("/api/appointments", appointmentRoutes);
+
+// Doctor Schedules Routers
+app.use("/api/doctor-schedules", doctorScheduleRouter);
 
 mongoose
   .connect(URL)
