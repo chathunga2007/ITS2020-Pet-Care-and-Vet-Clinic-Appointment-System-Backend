@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import { AppointmentModel } from "../models/appointment.model";
 import { AuthRequest } from "../middleware/auth";
 import { UserModel } from "../models/user.model";
@@ -35,6 +35,24 @@ export const createAppointment = async (req: AuthRequest, res: Response) => {
       }
     }
 
+    const startOfDay = new Date(appointmentDate);
+    startOfDay.setHours(0, 0, 0, 0);
+    const endOfDay = new Date(appointmentDate);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const conflictingAppointment = await AppointmentModel.findOne({
+      doctor: doctorId,
+      appointmentDate: { $gte: startOfDay, $lte: endOfDay },
+      time: time.trim(),
+      status: { $in: ["PENDING", "CONFIRMED"] },
+    });
+
+    if (conflictingAppointment) {
+      return res.status(400).json({
+        message: `Doctor already has an active appointment booked at ${time} on this date. Please choose another time slot!`
+      });
+    }
+
     const newAppointment = new AppointmentModel({
       user: req.user.sub,
       pet: petId,
@@ -52,13 +70,17 @@ export const createAppointment = async (req: AuthRequest, res: Response) => {
     const doctor = await DoctorModel.findById(doctorId);
 
     if (user && user.email) {
-      await sendAppointmentEmail(user.email, {
-        petName: pet ? pet.name : "Your Pet",
-        doctorName: doctor ? doctor.name : "Doctor",
-        date: new Date(appointmentDate).toISOString().split('T')[0],
-        time: time,
-        status: "PENDING (Created)"
-      });
+      try {
+        await sendAppointmentEmail(user.email, {
+          petName: pet ? pet.name : "Your Pet",
+          doctorName: doctor ? doctor.name : "Doctor",
+          date: new Date(appointmentDate).toISOString().split('T')[0],
+          time: time,
+          status: "PENDING (Created)"
+        });
+      } catch (mailErr) {
+        console.warn("Appointment notification email could not be sent:", mailErr);
+      }
     }
 
     return res.status(201).json({
@@ -208,5 +230,32 @@ export const cancelAppointment = async (req: AuthRequest, res: Response) => {
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Failed to cancel appointment!" });
+  }
+};
+
+// Get Booked Slots for Doctor on a specific date
+export const getDoctorBookedSlots = async (req: Request, res: Response) => {
+  try {
+    const { doctorId, date } = req.query;
+    if (!doctorId || !date) {
+      return res.status(400).json({ message: "doctorId and date query parameters are required!" });
+    }
+
+    const startOfDay = new Date(date as string);
+    startOfDay.setHours(0, 0, 0, 0);
+    const endOfDay = new Date(date as string);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const appointments = await AppointmentModel.find({
+      doctor: doctorId as any,
+      appointmentDate: { $gte: startOfDay, $lte: endOfDay },
+      status: { $in: ["PENDING", "CONFIRMED"] },
+    }).select("time");
+
+    const bookedSlots = appointments.map((a: any) => a.time);
+    return res.status(200).json({ data: bookedSlots });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Failed to fetch booked slots!" });
   }
 };
