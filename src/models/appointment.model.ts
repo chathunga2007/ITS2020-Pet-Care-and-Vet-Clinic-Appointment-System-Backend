@@ -5,6 +5,7 @@ export interface IAppointment extends Document {
     pet: Types.ObjectId;
     doctor: Types.ObjectId;
     appointmentDate: Date;
+    time: string;
     reason: string;
     status: "PENDING" | "CONFIRMED" | "COMPLETED" | "CANCELLED";
     createdAt: Date;
@@ -17,6 +18,7 @@ const appointmentSchema = new Schema<IAppointment>(
         pet: { type: Schema.Types.ObjectId, ref: "pets", required: true },
         doctor: { type: Schema.Types.ObjectId, ref: "doctors", required: true },
         appointmentDate: { type: Date, required: true },
+        time: { type: String, required: true },
         reason: { type: String, required: true },
         status: {
             type: String,
