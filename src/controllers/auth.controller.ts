@@ -5,6 +5,7 @@ import { AuthRequest } from "../middleware/auth";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import { sendOtpEmail } from "../services/email.service";
 
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET as string;
 
@@ -157,5 +158,65 @@ export const getRefreshToken = async (req: Request, res: Response) => {
   } catch (err) {
     console.error(err);
     return res.status(403).json({ message: "Invalid or expired token...!" });
+  }
+};
+
+// Forgot Password
+export const forgotPassword = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: "Email is required!" });
+    }
+
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User with this email not found!" });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    user.resetPasswordToken = otp;
+    user.resetPasswordExpires = new Date(Date.now() + 15 * 60 * 1000);
+    await user.save();
+
+    await sendOtpEmail(user.email, otp);
+
+    return res.status(200).json({ message: "OTP Sent Successfully!" });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Failed to send OTP email!" });
+  }
+};
+
+// Reset Password
+export const resetPassword = async (req: Request, res: Response) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({ message: "Email, OTP, and new password are required!" });
+    }
+
+    const user = await UserModel.findOne({
+      email,
+      resetPasswordToken: otp,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired OTP code!" });
+    }
+
+    const salt = bcrypt.genSaltSync(10);
+    user.password = bcrypt.hashSync(newPassword, salt);
+
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    return res.status(200).json({ message: "Password reset successfully! You can now login." });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Failed to reset password!" });
   }
 };
