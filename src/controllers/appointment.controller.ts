@@ -7,6 +7,18 @@ import { DoctorModel } from "../models/doctor.model";
 import { DoctorScheduleModel } from "../models/doctor-schedule.model";
 import { sendAppointmentEmail } from "../services/email.service";
 
+const timeToMinutes = (timeStr: string): number => {
+  if (!timeStr) return 0;
+  const match = timeStr.trim().match(/(\d+):(\d+)\s*(AM|PM)?/i);
+  if (!match) return 0;
+  let hours = parseInt(match[1], 10);
+  const minutes = parseInt(match[2], 10);
+  const period = match[3]?.toUpperCase();
+  if (period === "PM" && hours < 12) hours += 12;
+  if (period === "AM" && hours === 12) hours = 0;
+  return hours * 60 + minutes;
+};
+
 // Create Appointment
 export const createAppointment = async (req: AuthRequest, res: Response) => {
   try {
@@ -28,7 +40,11 @@ export const createAppointment = async (req: AuthRequest, res: Response) => {
 
     const schedule = await DoctorScheduleModel.findOne({ doctorId, dayOfWeek, isAvailable: true });
     if (schedule) {
-      if (time < schedule.startTime || time > schedule.endTime) {
+      const apptMins = timeToMinutes(time);
+      const startMins = timeToMinutes(schedule.startTime);
+      const endMins = timeToMinutes(schedule.endTime);
+
+      if (apptMins < startMins || apptMins > endMins) {
         return res.status(400).json({
           message: `Doctor is not available at this time. Working hours on ${dayOfWeek} are from ${schedule.startTime} to ${schedule.endTime}.`
         });

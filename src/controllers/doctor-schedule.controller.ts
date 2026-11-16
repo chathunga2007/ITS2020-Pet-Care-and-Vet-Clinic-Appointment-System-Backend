@@ -4,7 +4,7 @@ import { DoctorScheduleModel } from "../models/doctor-schedule.model";
 // Set Doctors Schedule
 export const setDoctorSchedule = async (req: Request, res: Response) => {
     try {
-        const { doctorId, dayOfWeek, startTime, endTime, slotDurationMinutes } = req.body;
+        const { doctorId, dayOfWeek, startTime, endTime, slotDurationMinutes, isAvailable } = req.body;
 
         if (!doctorId || !dayOfWeek || !startTime || !endTime) {
             return res.status(400).json({ message: "All required fields must be provided!" });
@@ -16,6 +16,9 @@ export const setDoctorSchedule = async (req: Request, res: Response) => {
             schedule.startTime = startTime;
             schedule.endTime = endTime;
             schedule.slotDurationMinutes = slotDurationMinutes || 30;
+            if (isAvailable !== undefined) {
+                schedule.isAvailable = Boolean(isAvailable);
+            }
             await schedule.save();
             return res.status(200).json({ message: "Doctor schedule updated successfully!", data: schedule });
         }
@@ -26,6 +29,7 @@ export const setDoctorSchedule = async (req: Request, res: Response) => {
             startTime,
             endTime,
             slotDurationMinutes: slotDurationMinutes || 30,
+            isAvailable: isAvailable !== undefined ? Boolean(isAvailable) : true,
         });
 
         await schedule.save();
