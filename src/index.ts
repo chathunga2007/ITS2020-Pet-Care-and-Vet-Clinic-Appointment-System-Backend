@@ -42,6 +42,9 @@ app.use("/api/doctor-schedules", doctorScheduleRouter);
 // Service Routers
 app.use("/api/services", serviceRoutes);
 
+// AI Bot Routers Chat
+app.use("/api/ai", aiRouter);
+
 mongoose
   .connect(URL)
   .then(() => {
