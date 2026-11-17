@@ -49,10 +49,15 @@ mongoose
   .connect(URL)
   .then(() => {
     console.log("DB Connected!");
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
   })
   .catch((err) => {
     console.error("DB Fail: ", err);
   });
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+export default app;
