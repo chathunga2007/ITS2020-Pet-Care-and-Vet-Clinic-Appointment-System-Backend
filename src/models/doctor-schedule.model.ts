@@ -11,7 +11,7 @@ export interface IDoctorSchedule extends Document {
 
 const doctorScheduleSchema = new Schema<IDoctorSchedule>(
     {
-        doctorId: { type: Schema.Types.ObjectId, ref: "Doctor", required: true },
+        doctorId: { type: Schema.Types.ObjectId, ref: "doctors", required: true },
         dayOfWeek: {
             type: String,
             required: true,
