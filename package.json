@@ -1,6 +1,5 @@
 {
   "name": "its2020-pet-care-and-vet-clinic-appointment-system-backend",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
