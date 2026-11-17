@@ -1,363 +1,421 @@
 <p align="center">
-  <img src="src/assets/pet-care-logo.png" width="95" height="95" alt="PetCare Logo" />
+  <img src="src/assets/pet-care-logo.png" width="130" height="130" alt="PetCare & Vet Clinic Logo" style="border-radius: 20%;" />
 </p>
 
-<h1 align="center">PetCare & Vet Clinic</h1>
-<h3 align="center">Online Appointment Booking & Veterinary Clinical Management System</h3>
+<h1 align="center">PetCare & Vet Clinic Appointment System</h1>
 
 <p align="center">
-  A production-ready, full-stack veterinary clinic management platform designed to streamline patient onboarding, veterinary doctor shift scheduling, multi-step appointment booking, automated email alerts, and an intelligent clinic AI assistant.
+  <b>Enterprise-grade Veterinary Clinical Practice & Pet Healthcare Appointment Management Platform</b><br />
+  Final Coursework Project for Rapid Application Development (RAD &bull; ITS2020) &bull; IJSE Semester 03
 </p>
 
 <p align="center">
-  <a href="https://pet-care-and-vet-clinic.vercel.app/"><img src="https://img.shields.io/badge/Live_App-Vercel-0d9488?style=for-the-badge&logo=vercel&logoColor=white" alt="Live App" /></a>
-  <a href="https://pet-care-and-vet-clinic-backend.vercel.app/"><img src="https://img.shields.io/badge/Live_API-Backend-0f766e?style=for-the-badge&logo=express&logoColor=white" alt="Live API" /></a>
-  <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 19" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Node.js-Express_5-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js Express" />
-  <img src="https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
-  <img src="https://img.shields.io/badge/Supabase-Storage-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
+  <a href="https://pet-care-and-vet-clinic.vercel.app/"><img src="https://img.shields.io/badge/Production%20Web%20App-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Web App" /></a>
+  <a href="https://pet-care-and-vet-clinic-backend.vercel.app/"><img src="https://img.shields.io/badge/Live%20REST%20API-Production-0d9488?style=for-the-badge&logo=fastapi&logoColor=white" alt="Live Backend API" /></a>
+  <a href="https://github.com/nodejs/node"><img src="https://img.shields.io/badge/Node.js-v18+-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" /></a>
+  <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express-v5.3-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express 5" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-Atlas%20%2F%20Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" /></a>
+  <a href="https://supabase.com/"><img src="https://img.shields.io/badge/Storage-Supabase%20Cloud-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase Storage" /></a>
+  <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/AI%20Assistant-Gemini%203.5%20Flash-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini AI" /></a>
 </p>
 
 ---
 
-## 📌 Project Overview
+### 🌐 Hosted Production Deployments
 
-**PetCare & Vet Clinic** is developed as the Final Coursework for **Rapid Application Development (RAD - ITS2020)** in **Semester 03** at the **Institute of Software Engineering (IJSE)**.
+| Component | Target URL | Status | Description |
+| :--- | :--- | :---: | :--- |
+| **Client & Admin Web Portal** | [https://pet-care-and-vet-clinic.vercel.app/](https://pet-care-and-vet-clinic.vercel.app/) | ![Operational](https://img.shields.io/badge/Status-Active-22c55e?style=flat-square) | React 19 SPA, Tailwind CSS, Lucide Icons |
+| **Backend RESTful API** | [https://pet-care-and-vet-clinic-backend.vercel.app/](https://pet-care-and-vet-clinic-backend.vercel.app/) | ![Operational](https://img.shields.io/badge/Status-Active-22c55e?style=flat-square) | Serverless Express 5 engine on Vercel Node runtime |
+| **API Base Endpoint** | `https://pet-care-and-vet-clinic-backend.vercel.app/api` | ![Secured](https://img.shields.io/badge/Protocol-HTTPS%2FJSON-0284c7?style=flat-square) | CORS enabled for client origin |
 
-Veterinary clinics regularly face hurdles with manual telephone scheduling: double-booked consultation slots, fragmented pet medical histories, unorganized doctor shift rosters, and delayed communication with pet parents. This system addresses these challenges through a unified cloud platform featuring dedicated **Client (Pet Parent)** and **Administrative (Clinic Staff)** portals, automated Nodemailer email notifications, cloud media hosting with Supabase, and an intelligent context-aware virtual assistant.
+#### 🔑 Pre-Configured Test Credentials
 
-### 🔗 Live Deployments
+For evaluation and demonstration purposes, the database is pre-seeded with test profiles:
 
-| Resource | Deployment URL |
-| :--- | :--- |
-| **Frontend Web Application** | [https://pet-care-and-vet-clinic.vercel.app/](https://pet-care-and-vet-clinic.vercel.app/) |
-| **Backend REST API** | [https://pet-care-and-vet-clinic-backend.vercel.app/](https://pet-care-and-vet-clinic-backend.vercel.app/) |
+| Account Type | Email | Password | Assigned Permissions |
+| :--- | :--- | :--- | :--- |
+| **Clinic Administrator** | `admin@petcare.com` | `admin123` | Full administrative control, doctor rosters, clinical services, all bookings |
+| **Pet Parent (Client)** | `user@petcare.com` | `user123` | Pet profile management, 5-stage booking flow, personal appointment history |
 
----
-
-## ✨ Key System Features
-
-### 🐾 1. Pet Parent (Client) Portal
-- **Robust Authentication & Security**:
-  - Stateless JWT access and refresh token management with bcrypt password hashing.
-  - **Self-Service Password Recovery**: Secure 6-digit OTP verification codes delivered via email (Nodemailer) with a 15-minute expiration window.
-- **Pet Registry & Health Profile**:
-  - Register pets with category (Dog, Cat, Bird, Rabbit, etc.), breed, age, and gender.
-  - Profile photo uploads directly streamed through Multer memory storage into **Supabase Storage**.
-  - Maintain historical health backgrounds, allergies, and ongoing treatment notes.
-  - Soft-delete capability preserving historical appointment integrity.
-- **Interactive Multi-Step Appointment Booking**:
-  1. *Step 1 — Select Pet*: Choose an existing registered pet or quickly onboard a new pet.
-  2. *Step 2 — Select Veterinarian*: Choose an active doctor filtered by clinical specialization.
-  3. *Step 3 — Select Clinical Service*: Pick from clinical procedures (Wellness Exam, Dental Scaling, Vaccinations, Surgery) with standard pricing (LKR) and durations.
-  4. *Step 4 — Date & Time Slot Picker*: Real-time slot allocation based on the doctor's weekly roster; prevents overlapping bookings.
-  5. *Step 5 — Confirmation*: Complete booking overview with appointment reason and special care instructions.
-- **Appointment Tracking**: Live overview of past and upcoming consultations with dynamic badges (`PENDING`, `CONFIRMED`, `COMPLETED`, `CANCELLED`).
-- **Instant Email Confirmation**: Automatic HTML transactional confirmation emails dispatched directly to the pet parent upon booking.
+> *Self-registration is also available via the client interface with instant email confirmation and password reset support.*
 
 ---
 
-### 🩺 2. Clinic Operations (Admin) Portal
-- **Operational Dashboard**: System-wide counts of total appointments, registered veterinarians, clinical services, and registered pets.
-- **Veterinary Specialist Management**:
-  - Register and manage doctors with specialized fields, contact numbers, email, working hours, and profile photos.
-  - Toggle doctor active status on the clinic floor.
-- **Doctor Shift Scheduling Roster**:
-  - Configure daily consulting hours for each day of the week (Monday through Sunday).
-  - Configurable consultation slot intervals (15, 30, 45, or 60 minutes).
-  - Real-time availability toggling for leave or unexpected off-duty hours.
-- **Clinical Services Directory**:
-  - Full CRUD operations for veterinary procedures, checkups, vaccinations, and surgeries.
-  - Define standard consultation fees (LKR), duration requirements, and preparation instructions.
-- **Appointment Lifecycle Dispatcher**:
-  - Real-time clinic appointment overview populated with complete user, pet, doctor, and service details.
-  - Manage status transitions: Confirm bookings, mark consultations completed, or cancel.
-- **System-Wide Pet Directory**: Access full records of all active registered pets in the clinic.
+## 📋 Table of Contents
+
+- [Executive Summary](#-executive-summary)
+- [System Architecture](#-system-architecture)
+- [Core Functional Modules](#-core-functional-modules)
+  - [1. Authentication, Authorization & Security](#1-authentication-authorization--security)
+  - [2. Multi-Step Appointment Booking Engine](#2-multi-step-appointment-booking-engine)
+  - [3. Doctor Shift & Schedule Management](#3-doctor-shift--schedule-management)
+  - [4. Pet Records & Medical Profiles](#4-pet-records--medical-profiles)
+  - [5. PawBot — Context-Aware Veterinary AI](#5-pawbot--context-aware-veterinary-ai)
+  - [6. Cloud Storage & Automated Email Service](#6-cloud-storage--automated-email-service)
+- [Database Entity Relationships](#-database-entity-relationships)
+- [REST API Reference](#-rest-api-reference)
+  - [Authentication & Account Recovery (`/api/auth`)](#authentication--account-recovery-apiauth)
+  - [Appointments & Slot Allocation (`/api/appointments`)](#appointments--slot-allocation-apiappointments)
+  - [Veterinarian Management (`/api/doctors`)](#veterinarian-management-apidoctors)
+  - [Doctor Working Schedules (`/api/doctor-schedules`)](#doctor-working-schedules-apidoctor-schedules)
+  - [Clinical Services (`/api/services`)](#clinical-services-apiservices)
+  - [Pet Profiles (`/api/pets`)](#pet-profiles-apipets)
+  - [AI Assistant (`/api/ai`)](#ai-assistant-apiai)
+- [Local Development & Setup Guide](#-local-development--setup-guide)
+  - [Prerequisites](#prerequisites)
+  - [Backend Setup](#1-backend-setup)
+  - [Frontend Setup](#2-frontend-setup)
+  - [Environment Variables Specification](#environment-variables-specification)
+- [Deployment Configuration](#-deployment-configuration)
+- [Academic Metadata](#-academic-metadata)
 
 ---
 
-### 🤖 3. PawBot — Virtual Clinic Assistant
-- **Real-Time Database Context (RAG)**: PawBot queries live MongoDB data on every question to provide up-to-the-minute doctor availability, weekly timetables, and clinic services.
-- **Strict Domain Boundary Guardrails**:
-  - Solely dedicated to PetCare & Vet Clinic queries, appointments, doctors, and domestic pet health advice.
-  - Politely and firmly declines out-of-scope inquiries (general programming, math, world politics, movies, etc.).
-- **Dual LLM Architecture**: Built with Google Gemini (`@google/genai`) and Groq (`groq-sdk` with `llama-3.3-70b-versatile` / `llama-3.1-8b-instant`) with automatic fallback.
-- **Bilingual Support**: Fluent and natural responses in both English and Sinhala / Singlish.
+## 📌 Executive Summary
+
+Veterinary practices frequently face administrative friction resulting from manual telephone appointment logs, double-booked consultation slots, fragmented patient histories, and lack of real-time visibility into doctor availability.
+
+The **PetCare & Vet Clinic Appointment System** resolves these operational bottlenecks through a cloud-native, decoupled client-server architecture:
+- **Client Web Application**: Built with React 19, TypeScript, and Tailwind CSS. Features an intuitive 5-step appointment booking wizard, interactive slot calendar, medical record manager, and real-time AI consultation chat.
+- **Backend Service**: An Express 5 / TypeScript micro-service architecture deployed on Vercel Serverless. Handles cryptographic authentication, database transactions via Mongoose / MongoDB Atlas, transactional SMTP email triggers via Nodemailer, resilient binary storage on Supabase with Base64 fallback, and real-time RAG-prompted veterinary intelligence via the Google Gemini 3.5 Flash Lite engine.
 
 ---
 
-### 🎨 4. Modern UI & Glassmorphic Design
-- **Theme Switcher**: Complete Light Mode and Dark Mode support with local storage persistence.
-- **Portal Modals**: High-performance React Portals (`createPortal`) mounting cleanly to `document.body` with deep `backdrop-blur-md` frosted glass overlays and scroll lock.
-- **Responsive Layout**: Mobile-first architecture optimized across mobile, tablet, and widescreen desktop monitors.
-
----
-
-## 🏗️ System Architecture
+## 🏗 System Architecture
 
 ```mermaid
 flowchart TD
-    subgraph ClientLayer["Frontend Client (React 19 + Vite)"]
-        Landing["Public Website / Landing"]
-        UserHub["Pet Parent Portal"]
-        AdminHub["Clinic Admin Operations"]
-        PawBotUI["PawBot Assistant Widget"]
+    subgraph ClientLayer["Frontend Client (React 19 + Tailwind CSS)"]
+        UI["Pet Parent & Admin Web Portals"]
+        Chat["PawBot AI Floating Widget"]
     end
 
-    subgraph ServerLayer["Backend API (Node.js + Express 5 + TypeScript)"]
-        AuthCtrl["Auth & JWT Middleware (RBAC)"]
-        PetCtrl["Pet Controller"]
-        DocCtrl["Doctor & Schedule Controller"]
-        SvcCtrl["Clinical Service Controller"]
-        ApptCtrl["Appointment Controller"]
-        AICtrl["PawBot AI Controller"]
+    subgraph GatewayLayer["API Gateway & Serverless Edge (Vercel)"]
+        VercelRoute["vercel.json Routing / Serverless Execution"]
+        ExpressApp["Express 5.3 REST Engine"]
+        Middlewares["Auth Middleware (JWT Verify) & Role Guard (RBAC)"]
     end
 
-    subgraph CloudServices["Database & Cloud Services"]
-        Mongo[("MongoDB Atlas Database")]
-        Supabase[("Supabase Cloud Storage - Images")]
-        SMTP["Nodemailer SMTP - Email Alerts & OTP"]
-        GeminiAPI["Google Gemini & Groq APIs"]
+    subgraph ServiceLayer["Application & Integration Services"]
+        AuthSvc["Auth & Token Service (Bcrypt + JWT)"]
+        ApptSvc["Booking & Slot Allocation Engine"]
+        AISvc["Gemini 3.5 Flash Lite Context Injector"]
+        UploadSvc["Supabase Storage Service (with Base64 Fallback)"]
+        EmailSvc["Nodemailer SMTP Notification Service"]
     end
 
-    ClientLayer -->|Axios REST Requests| ServerLayer
-    ServerLayer -->|Mongoose ODM| Mongo
-    ServerLayer -->|Upload Portraits / Pet Photos| Supabase
-    ServerLayer -->|Send Booking Notifications & OTPs| SMTP
-    AICtrl -->|Live Clinic Context RAG| GeminiAPI
+    subgraph DataLayer["Persistence & Cloud Infrastructure"]
+        MongoDB[("MongoDB Atlas Database")]
+        SupabaseBucket[("Supabase Object Storage Bucket")]
+        GeminiAPI["Google GenAI API"]
+        SMTPServer["Gmail SMTP Gateway"]
+    end
+
+    UI -->|HTTPS / REST API| VercelRoute
+    Chat -->|HTTPS / JSON POST| VercelRoute
+    VercelRoute --> ExpressApp
+    ExpressApp --> Middlewares
+    Middlewares --> AuthSvc
+    Middlewares --> ApptSvc
+    Middlewares --> AISvc
+    Middlewares --> UploadSvc
+    Middlewares --> EmailSvc
+
+    AuthSvc --> MongoDB
+    ApptSvc --> MongoDB
+    AISvc -->|DB Real-time Snapshot| MongoDB
+    AISvc -->|System Prompt & RAG Context| GeminiAPI
+    UploadSvc --> SupabaseBucket
+    EmailSvc --> SMTPServer
+    ApptSvc -.->|Dispatches Booking Alert| EmailSvc
 ```
 
 ---
 
-## 💻 Tech Stack
+## 🚀 Core Functional Modules
 
-### Frontend
-| Technology | Description |
-| :--- | :--- |
-| **React 19** | Next-generation declarative component-based UI library |
-| **TypeScript** | Strict compile-time typing for UI state and API contracts |
-| **Vite** | Blazing fast ESM frontend development and build tooling |
-| **Tailwind CSS** | Utility-first CSS framework with medical teal accents & dark mode |
-| **React Router v7** | Declarative client-side routing with protected role-based routes |
-| **Lucide React** | Clean, accessible SVG icon suite |
-| **Axios** | HTTP client with automatic bearer token attachment & interceptors |
-| **React Hot Toast** | Lightweight toast notifications |
+### 1. Authentication, Authorization & Security
+- **Dual-Token JWT Strategy**: Short-lived access tokens paired with secure refresh token rotation to minimize token exposure.
+- **Role-Based Access Control (RBAC)**: Distinct authorization barriers for `UserRole.USER` and `UserRole.ADMIN`.
+- **Credential Protection**: One-way salted hashing using `bcryptjs` (salt factor 10).
+- **Self-Service Password Recovery**: End-to-end OTP password reset workflow generating cryptographically secure 6-digit tokens transmitted via transactional email with a 15-minute validity window.
 
-### Backend
-| Technology | Description |
-| :--- | :--- |
-| **Node.js & Express 5** | High-performance server runtime and RESTful API framework |
-| **TypeScript** | End-to-end type safety across controllers, models, and routes |
-| **MongoDB & Mongoose** | Cloud NoSQL document database with strict schema validation |
-| **JWT & bcryptjs** | Secure token-based authentication with role-based access control |
-| **Supabase Storage** | Cloud bucket storage for pet photos and doctor portraits |
-| **Nodemailer** | SMTP email client for appointment alerts and 6-digit OTP verification |
-| **Google Gemini & Groq** | LLM engines driving PawBot with real-time MongoDB RAG context |
-| **Multer** | Multipart form-data handling for memory-buffered image uploads |
-| **Vercel Serverless** | Zero-downtime serverless cloud deployment |
+### 2. Multi-Step Appointment Booking Engine
+The consultation scheduler guides pet parents through a structured 5-stage validation flow:
+1. **Pet Selection**: Choose from currently registered pets or register a new animal in-line.
+2. **Doctor Selection**: Filter verified veterinarians by medical discipline and availability.
+3. **Clinical Service Selection**: Select consultation procedures (e.g., General Wellness, Vaccinations, Dental Scaling, Minor Surgery) with transparent durations and cost in LKR.
+4. **Intelligent Slot Resolver**: Inspects the doctor's weekly operational schedule, cross-checks against existing bookings for that calendar date, and exposes only unoccupied time slots.
+5. **Confirmation & Booking Dispatch**: Persists the appointment in MongoDB and synchronously triggers a formatted HTML booking confirmation email to the owner.
+
+### 3. Doctor Shift & Schedule Management
+- Administrative controls to configure recurring weekly consultation shifts per doctor.
+- Parameters include assigned working day (`Monday` through `Sunday`), starting time, ending time, and maximum booking capacities per slot window.
+- Public read access enables client-side dynamic rendering of doctor shifts.
+
+### 4. Pet Records & Medical Profiles
+- Supports multiple pet species: Dog, Cat, Bird, Rabbit, and exotic pets.
+- Records pet name, breed, age, gender, medical history notes, and existing allergies.
+- Media upload integration: Pet profile photos are automatically uploaded to Supabase Storage with clean UUID-prefixed file sanitization.
+
+### 5. PawBot — Context-Aware Veterinary AI
+- Powered by the `@google/genai` SDK running `gemini-3.5-flash-lite`.
+- **Live Database Context Injection (RAG)**: When an inquiry is submitted, the backend fetches real-time records of active veterinarians, clinical services, pricing, and operational hours, injecting them into the system instruction prompt.
+- **Strict Guardrails**: PawBot enforces strict boundary constraints, rejecting non-veterinary queries (e.g., programming, general knowledge) to maintain clinical focus.
+
+### 6. Cloud Storage & Automated Email Service
+- **Resilient Media Pipeline**: `Multer` processes multipart binary streams into memory. The upload service uploads files to Supabase cloud buckets. If bucket rate-limits or misconfigurations occur, it fails over seamlessly to an inline Base64 data URI format, ensuring zero UI breakage.
+- **HTML Transactional Emails**: Dispatches styled confirmation cards containing the reference ID, scheduled date/time, doctor name, pet profile, and clinic contact information.
 
 ---
 
-## 🗄️ Database Schema Overview
+## 🗄 Database Entity Relationships
 
-```mermaid
-erDiagram
-    USER ||--o{ PET : "owns"
-    USER ||--o{ APPOINTMENT : "books"
-    DOCTOR ||--o{ DOCTOR_SCHEDULE : "has"
-    DOCTOR ||--o{ APPOINTMENT : "attends"
-    PET ||--o{ APPOINTMENT : "receives care"
-    SERVICE ||--o{ APPOINTMENT : "includes"
-
-    USER {
-        ObjectId _id PK
-        string name
-        string email
-        string password
-        string role "ADMIN | USER"
-        string phone
-        boolean approve
-        string resetPasswordToken
-        Date resetPasswordExpires
-    }
-
-    PET {
-        ObjectId _id PK
-        ObjectId owner FK
-        string name
-        string type
-        string breed
-        number age
-        string gender "MALE | FEMALE"
-        string medicalHistory
-        string imageURL
-        string status "ACTIVE | DELETED"
-    }
-
-    DOCTOR {
-        ObjectId _id PK
-        string name
-        string specialization
-        string phone
-        string email
-        string workingHours
-        string imageURL
-        string status "ACTIVE | INACTIVE"
-    }
-
-    DOCTOR_SCHEDULE {
-        ObjectId _id PK
-        ObjectId doctorId FK
-        string dayOfWeek "Monday - Sunday"
-        string startTime
-        string endTime
-        number slotDurationMinutes
-        boolean isAvailable
-    }
-
-    SERVICE {
-        ObjectId _id PK
-        string name
-        string description
-        number price
-        number durationMinutes
-    }
-
-    APPOINTMENT {
-        ObjectId _id PK
-        ObjectId user FK
-        ObjectId pet FK
-        ObjectId doctor FK
-        ObjectId service FK
-        Date appointmentDate
-        string time
-        string reason
-        string status "PENDING | CONFIRMED | COMPLETED | CANCELLED"
-    }
+```
+┌──────────────────────┐         ┌─────────────────────────┐
+│        USERS         │         │          PETS           │
+├──────────────────────┤         ├─────────────────────────┤
+│ _id: ObjectId        │ 1     * │ _id: ObjectId           │
+│ name: String         ├────────<│ ownerId: ObjectId (Ref) │
+│ email: String (UQ)   │         │ name: String            │
+│ password: String     │         │ category: String        │
+│ roles: [String]      │         │ breed: String           │
+│ phone: String        │         │ age: Number             │
+│ resetPasswordToken   │         │ gender: String          │
+│ resetPasswordExpires │         │ imageUrl: String        │
+└──────────┬───────────┘         └────────────┬────────────┘
+           │ 1                                │ 1
+           │                                  │
+           │ *                                │ *
+┌──────────┴──────────────────────────────────┴────────────┐
+│                       APPOINTMENTS                       │
+├──────────────────────────────────────────────────────────┤
+│ _id: ObjectId                                            │
+│ userId: ObjectId (Ref -> USERS)                          │
+│ petId: ObjectId (Ref -> PETS)                            │
+│ doctorId: ObjectId (Ref -> DOCTORS)                      │
+│ serviceId: ObjectId (Ref -> SERVICES)                    │
+│ date: String (YYYY-MM-DD)                                │
+│ timeSlot: String (HH:mm - HH:mm)                         │
+│ reason: String                                           │
+│ status: 'PENDING' | 'CONFIRMED' | 'COMPLETED' | 'CANCEL' │
+│ notes: String                                            │
+└──────────┬──────────────────────────────────┬────────────┘
+           │ *                                │ *
+           │ 1                                │ 1
+┌──────────┴───────────┐         ┌────────────┴────────────┐
+│       DOCTORS        │         │        SERVICES         │
+├──────────────────────┤         ├─────────────────────────┤
+│ _id: ObjectId        │ 1     * │ _id: ObjectId           │
+│ name: String         ├────────<│ name: String            │
+│ specialization: Str  │         │ description: String     │
+│ phone: String        │         │ price: Number (LKR)     │
+│ email: String        │         │ duration: Number (mins) │
+│ imageUrl: String     │         │ isActive: Boolean       │
+│ status: 'ACTIVE'|... │         └─────────────────────────┘
+└──────────┬───────────┘
+           │ 1
+           │ *
+┌──────────┴───────────┐
+│   DOCTOR_SCHEDULES   │
+├──────────────────────┤
+│ _id: ObjectId        │
+│ doctorId: ObjectId   │
+│ dayOfWeek: String    │
+│ startTime: String    │
+│ endTime: String      │
+│ maxAppointments: Num │
+└──────────────────────┘
 ```
 
 ---
 
 ## 📡 REST API Reference
 
-### 🔐 Authentication (`/api/auth`)
-| Method | Endpoint | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/register` | Public | Register a new pet parent account |
-| `POST` | `/login` | Public | Authenticate user & receive access/refresh tokens |
-| `POST` | `/refresh-token` | Public | Refresh expired JWT access token |
-| `GET` | `/me` | User / Admin | Retrieve current logged-in user profile |
-| `POST` | `/forgot-password` | Public | Send 6-digit OTP verification code via email |
-| `POST` | `/reset-password` | Public | Verify OTP code and set new password |
-| `GET` | `/admin` | Admin | Verify administrative privileges |
-
-### 🐶 Pet Management (`/api/pets`)
-| Method | Endpoint | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/` | User | Register a new pet (with Supabase photo upload) |
-| `GET` | `/my-pets` | User | Retrieve all active pets owned by logged-in user |
-| `GET` | `/all` | Admin | Retrieve all registered pets across the clinic |
-| `PUT` | `/:id` | User | Update pet details & photo |
-| `DELETE`| `/:id` | User | Soft-delete pet (sets status to `DELETED`) |
-
-### 🩺 Doctors (`/api/doctors`)
-| Method | Endpoint | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/` | Public | Get list of all active veterinary doctors |
-| `POST` | `/` | Admin | Add new doctor with photo portrait |
-| `PUT` | `/:id` | Admin | Update doctor credentials and hours |
-| `DELETE`| `/:id` | Admin | Deactivate doctor profile |
-
-### 📅 Doctor Schedules (`/api/doctor-schedules`)
-| Method | Endpoint | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/` | Admin | Set/update consulting hours and slot duration for a weekday |
-| `GET` | `/:doctorId` | Public | Get active consulting roster for a doctor |
-
-### 💉 Clinical Services (`/api/services`)
-| Method | Endpoint | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/` | Public | List all clinical services and pricing |
-| `POST` | `/` or `/create` | Admin | Create a new clinical service |
-| `PUT` | `/:id` | Admin | Update service fee, duration, or description |
-| `DELETE`| `/:id` | Admin | Delete a clinical service |
-
-### 📋 Appointments (`/api/appointments`)
-| Method | Endpoint | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/` | User | Book a consultation slot (sends confirmation email) |
-| `GET` | `/my-appointments` | User | View appointments for the authenticated pet parent |
-| `GET` | `/all` | Admin | View all appointments clinic-wide |
-| `PUT` | `/:id/status` | User / Admin | Update status (`PENDING`, `CONFIRMED`, `COMPLETED`, `CANCELLED`) |
-| `DELETE`| `/:id` | User | Cancel appointment (user owned) |
-
-### 🤖 Assistant (`/api/ai`)
-| Method | Endpoint | Access | Description |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/chat` | Public | Chat with PawBot (real-time RAG + clinic database data) |
+### Base URL
+All API requests are routed through `/api`:
+- **Local**: `http://localhost:3000/api`
+- **Production**: `https://pet-care-and-vet-clinic-backend.vercel.app/api`
 
 ---
 
-## 🚀 Getting Started Locally
+### Authentication & Account Recovery (`/api/auth`)
+
+| Method | Endpoint | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Public | Register a new user (`name`, `email`, `password`, `phone`) |
+| `POST` | `/api/auth/login` | Public | Authenticate user; returns `accessToken`, `refreshToken`, and user payload |
+| `POST` | `/api/auth/refresh` | Public | Rotate and obtain a new `accessToken` using a valid refresh token |
+| `GET` | `/api/auth/me` | Authenticated | Fetch active user session and profile details |
+| `GET` | `/api/auth/admin` | Admin Only | Validates administrative privileges |
+| `POST` | `/api/auth/forgot-password` | Public | Sends a 6-digit OTP code to the requested email |
+| `POST` | `/api/auth/reset-password` | Public | Resets user password using the verified token |
+
+#### Sample Login Request
+```bash
+curl -X POST https://pet-care-and-vet-clinic-backend.vercel.app/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@petcare.com",
+    "password": "user123"
+  }'
+```
+
+---
+
+### Appointments & Slot Allocation (`/api/appointments`)
+
+| Method | Endpoint | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/appointments/booked-slots` | Public | Query booked slots (`?doctorId=...&date=YYYY-MM-DD`) |
+| `POST` | `/api/appointments` | Authenticated | Create an appointment & dispatch confirmation email |
+| `GET` | `/api/appointments/my-appointments` | Authenticated | List all appointments belonging to current user |
+| `PUT` | `/api/appointments/:id/status` | Authenticated / Admin | Update status (`PENDING`, `CONFIRMED`, `COMPLETED`, `CANCELLED`) |
+| `PUT` | `/api/appointments/:id/cancel` | Authenticated | Cancel personal appointment |
+| `GET` | `/api/appointments/all` | Admin Only | Administrative overview of all clinic appointments |
+
+#### Sample Appointment Booking Payload
+```json
+{
+  "petId": "6737bc2e4822f30b91e9f1a2",
+  "doctorId": "6737a4c24822f30b91e9f0d1",
+  "serviceId": "6737ab514822f30b91e9f0fe",
+  "date": "2026-11-20",
+  "timeSlot": "09:00 AM - 09:30 AM",
+  "reason": "Routine annual vaccination and wellness checkup",
+  "notes": "Pet gets slightly anxious in waiting rooms."
+}
+```
+
+---
+
+### Veterinarian Management (`/api/doctors`)
+
+| Method | Endpoint | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/doctors` | Public | List all active veterinarians with specializations and contact |
+| `POST` | `/api/doctors` | Admin Only | Onboard doctor with photo upload (`multipart/form-data`) |
+| `PUT` | `/api/doctors/:id` | Admin Only | Update doctor details and profile image |
+| `DELETE` | `/api/doctors/:id` | Admin Only | Remove doctor profile from the clinic directory |
+
+---
+
+### Doctor Working Schedules (`/api/doctor-schedules`)
+
+| Method | Endpoint | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/doctor-schedules` | Authenticated / Admin | Create or update weekly shift hours for a veterinarian |
+| `GET` | `/api/doctor-schedules/:doctorId` | Public | Retrieve active weekly working schedule for a given doctor |
+
+---
+
+### Clinical Services (`/api/services`)
+
+| Method | Endpoint | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/services` | Public | List all published clinic services with pricing (LKR) and duration |
+| `POST` | `/api/services` | Admin Only | Register a new clinical procedure or checkup tier |
+| `PUT` | `/api/services/:id` | Admin Only | Modify service name, description, duration, or fee |
+| `DELETE` | `/api/services/:id` | Admin Only | Remove service from active catalogue |
+
+---
+
+### Pet Profiles (`/api/pets`)
+
+| Method | Endpoint | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/pets` | Authenticated | Register a pet with picture (`multipart/form-data`) |
+| `GET` | `/api/pets/my-pets` | Authenticated | Retrieve all pets owned by the authenticated user |
+| `PUT` | `/api/pets/:id` | Authenticated | Update pet demographics or health records |
+| `DELETE` | `/api/pets/:id` | Authenticated | Remove pet profile |
+| `GET` | `/api/pets/all` | Admin Only | Master registry of all pets registered with the clinic |
+
+---
+
+### AI Assistant (`/api/ai`)
+
+| Method | Endpoint | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/ai/chat` | Public | Interact with PawBot AI; injects live database context |
+
+#### Sample AI Assistant Request
+```bash
+curl -X POST https://pet-care-and-vet-clinic-backend.vercel.app/api/ai/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "Which doctors are available for feline vaccination, and what are their working hours?"
+  }'
+```
+
+---
+
+## 🛠 Local Development & Setup Guide
 
 ### Prerequisites
-- **Node.js** (v18.0 or later)
-- **npm** or **pnpm**
-- **MongoDB** (Local instance or MongoDB Atlas cluster connection string)
-- **Supabase Account** (For image bucket storage)
+- **Node.js**: `v18.x` or higher
+- **Package Manager**: `npm` (v9+)
+- **Database**: Local MongoDB instance or free [MongoDB Atlas Cluster](https://www.mongodb.com/atlas)
+- **Object Storage**: [Supabase Cloud Project](https://supabase.com/) with a storage bucket (e.g. `articles` or `petcare`)
+- **Email Service**: Gmail account with an App Password or any SMTP provider
+- **AI Engine**: [Google AI Studio API Key](https://aistudio.google.com/) for Gemini models
 
 ---
 
 ### 1. Backend Setup
 
 ```bash
-# Navigate to the backend directory
+# Clone the repository
+git clone https://github.com/your-username/ITS2020-Pet-Care-and-Vet-Clinic-Appointment-System-Backend.git
 cd ITS2020-Pet-Care-and-Vet-Clinic-Appointment-System-Backend
 
 # Install dependencies
 npm install
 
-# Create environment configuration
+# Initialize environment variables
 cp .example.env .env
 ```
 
-Configure your `.env` file with your credentials:
+Open `.env` in your editor and configure the keys:
+
 ```env
 PORT=3000
-MONGO_LOCAL_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/petcare-clinic
-JWT_SECRET=your_jwt_secret_key_here
-JWT_REFRESH_SECRET=your_refresh_secret_here
+MONGO_LOCAL_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/petcare_db?retryWrites=true&w=majority
 
-# Supabase Storage Configuration
-SUPERBASE_URL=https://your-project.supabase.co
-SUPERBASE_KEY=your_supabase_service_role_key
+JWT_SECRET=your_super_secret_jwt_access_key
+JWT_REFRESH_SECRET=your_super_secret_jwt_refresh_key
 
-# Nodemailer SMTP Configuration
+# Supabase Storage Credentials
+SUPERBASE_URL=https://your-project-id.supabase.co
+SUPERBASE_KEY=your_supabase_service_role_or_anon_key
+
+# SMTP Notification Credentials
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=your_clinic_email@gmail.com
-EMAIL_PASS=your_gmail_app_password
+EMAIL_USER=your-clinic-notification-email@gmail.com
+EMAIL_PASS=your-gmail-16-char-app-password
 
-# AI Assistant Keys
-GEMINI_API_KEY=your_gemini_api_key_here
-GROQ_API_KEY=your_groq_api_key_here
+# Google Gemini AI Integration
+GEMINI_API_KEY=AIzaSy...your_gemini_api_key_here
 ```
 
-Start the development backend server:
+Start the backend development server:
+
 ```bash
 npm run dev
-# Server will run at http://localhost:3000
+# Server initiates at http://localhost:3000 with tsx file watcher
 ```
 
 ---
 
 ### 2. Frontend Setup
 
+In a separate terminal:
+
 ```bash
 # Navigate to the frontend directory
-cd ITS2020-Pet-Care-and-Vet-Clinic-Appointment-System-Frontend
+cd ../ITS2020-Pet-Care-and-Vet-Clinic-Appointment-System-Frontend
 
 # Install dependencies
 npm install
@@ -366,87 +424,80 @@ npm install
 cp .env.example .env
 ```
 
-Configure your `.env` file:
+Set the backend API connection in the frontend `.env`:
+
 ```env
-# Point to your local or deployed backend
+# For local backend:
 VITE_API_BASE_URL=http://localhost:3000/api
-# Or use the live backend:
+
+# For production backend:
 # VITE_API_BASE_URL=https://pet-care-and-vet-clinic-backend.vercel.app/api
 ```
 
-Start the frontend development server:
+Start the Vite development server:
+
 ```bash
 npm run dev
-# Application will launch at http://localhost:5173
+# Client application launches at http://localhost:5173
 ```
 
 ---
 
-## 🧪 Demo Test Accounts
+### Environment Variables Specification
 
-For evaluation and testing purposes, you can use the following pre-configured credentials:
-
-| Role | Email | Password | Access Scope |
-| :--- | :--- | :--- | :--- |
-| **Administrator** | `admin@petcare.com` | `admin123` | Complete Administrative Operations, Doctor Rosters, Services & Appointments |
-| **Pet Parent (User)** | `user@petcare.com` | `user123` | Client Dashboard, Pet Registry, 5-Step Appointment Booking |
-
-*(You can also register a fresh account anytime directly via the [Sign Up page](https://pet-care-and-vet-clinic.vercel.app/register).)*
-
----
-
-## 📂 Project Structure
-
-```
-├── ITS2020-Pet-Care-and-Vet-Clinic-Appointment-System-Frontend/
-│   ├── src/
-│   │   ├── assets/              # Clinic logos, icons, illustrations
-│   │   ├── components/          # Navbar, Footer, PawBot, reusable cards
-│   │   │   └── modals/          # Doctor, Schedule, and Pet Portal Modals
-│   │   ├── context/             # AuthContext, ThemeContext (Light/Dark)
-│   │   ├── hooks/               # Custom hooks (useAuth, useTheme)
-│   │   ├── layouts/             # DashboardLayout (Sidebar, Top Navigation)
-│   │   ├── pages/               # Application Views
-│   │   │   ├── admin/           # AdminDashboard, AdminDoctors, AdminServices, AdminPets, AdminAppointments
-│   │   │   ├── user/            # UserDashboard, UserPets, UserBookAppointment, UserAppointments
-│   │   │   ├── Home.tsx         # Public Landing Page
-│   │   │   ├── Login.tsx        # Authentication Login
-│   │   │   └── Register.tsx     # Authentication Registration
-│   │   ├── router/              # Route definitions & Role-based guards
-│   │   ├── service/             # Axios API integration modules
-│   │   └── types/               # TypeScript interface declarations
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── vite.config.ts
-│
-└── ITS2020-Pet-Care-and-Vet-Clinic-Appointment-System-Backend/
-    ├── src/
-    │   ├── assets/              # Clinic logo (pet-care-logo.png)
-    │   ├── config/              # Supabase client initialization
-    │   ├── controllers/         # Auth, Pet, Doctor, Schedule, Service, Appointment, AI
-    │   ├── middleware/          # JWT auth, role guard, Multer upload
-    │   ├── models/              # User, Pet, Doctor, DoctorSchedule, Service, Appointment schemas
-    │   ├── routes/              # Express API routers
-    │   ├── services/            # Supabase upload, email (Nodemailer), PawBot AI
-    │   ├── util/                # JWT helpers
-    │   └── index.ts             # Server entry point & MongoDB connection
-    ├── .example.env
-    ├── package.json
-    ├── tsconfig.json
-    └── vercel.json
-```
+| Key | Required | Type | Purpose |
+| :--- | :---: | :---: | :--- |
+| `PORT` | Optional | `Number` | HTTP port for local Express listener (default: `3000`). |
+| `MONGO_LOCAL_URL` | **Yes** | `String` | MongoDB connection URI (local `mongodb://` or Atlas `mongodb+srv://`). |
+| `JWT_SECRET` | **Yes** | `String` | Secret key used to sign standard access tokens. |
+| `JWT_REFRESH_SECRET`| **Yes** | `String` | Secret key used to sign session refresh tokens. |
+| `SUPERBASE_URL` | **Yes** | `String` | Supabase project API URL (`https://xyz.supabase.co`). |
+| `SUPERBASE_KEY` | **Yes** | `String` | Supabase API authorization key with storage bucket access. |
+| `EMAIL_HOST` | **Yes** | `String` | SMTP server host (e.g., `smtp.gmail.com`). |
+| `EMAIL_PORT` | **Yes** | `Number` | SMTP transmission port (e.g., `587` for TLS / `465` for SSL). |
+| `EMAIL_USER` | **Yes** | `String` | Originating email address for transactional dispatches. |
+| `EMAIL_PASS` | **Yes** | `String` | SMTP authentication app password. |
+| `GEMINI_API_KEY` | **Yes** | `String` | Google GenAI API key for the PawBot RAG assistant. |
 
 ---
 
-## 👨‍💻 Author & Acknowledgements
+## ☁️ Deployment Configuration
 
-- **Developer**: Chathunga Bimsara
-- **Institute**: [Institute of Software Engineering (IJSE)](https://www.ijse.lk/)
-- **Course**: Software Engineering — Semester 03
-- **Module**: Rapid Application Development (RAD - ITS2020) Final Coursework Project
+The backend is configured for zero-configuration serverless deployment on **Vercel** via `vercel.json`:
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    }
+  ]
+}
+```
+
+The application checks `process.env.NODE_ENV !== "production"` before calling `app.listen()`, seamlessly switching between persistent local execution and serverless request dispatch on Vercel's global edge network.
+
+---
+
+## 🎓 Academic Metadata
+
+- **Institution**: [Institute of Software Engineering (IJSE)](https://www.ijse.lk/)
+- **Program**: Graduate Diploma in Software Engineering (GDSE) / Higher National Diploma
+- **Semester**: Semester 03
+- **Module**: Rapid Application Development (RAD &bull; Coursework Module ITS2020)
+- **Project**: Pet Care and Veterinary Clinic Online Consultation & Appointment Scheduling System
 
 ---
 
 <p align="center">
-  <b>PetCare & Vet Clinic Appointment System</b> • Crafted with care for veterinary professionals and loving pet parents. 🐾
+  <b>PetCare & Vet Clinic</b> &bull; Engineering dependable healthcare management for pets and their companions. 🐾
 </p>
