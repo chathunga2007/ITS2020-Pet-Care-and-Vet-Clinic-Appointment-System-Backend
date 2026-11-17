@@ -5,6 +5,7 @@ import { UserModel } from "../models/user.model";
 import { PetModel } from "../models/pet.model";
 import { DoctorModel } from "../models/doctor.model";
 import { DoctorScheduleModel } from "../models/doctor-schedule.model";
+import { ServiceModel } from "../models/service.model";
 import { sendAppointmentEmail } from "../services/email.service";
 
 const timeToMinutes = (timeStr: string): number => {
@@ -26,7 +27,7 @@ export const createAppointment = async (req: AuthRequest, res: Response) => {
       return res.status(401).json({ message: "Unauthorized!" });
     }
 
-    const { petId, doctorId, appointmentDate, time, reason } = req.body;
+    const { petId, doctorId, serviceId, service, appointmentDate, time, reason } = req.body;
 
     if (!petId || !doctorId || !appointmentDate || !time) {
       return res.status(400).json({
@@ -73,6 +74,7 @@ export const createAppointment = async (req: AuthRequest, res: Response) => {
       user: req.user.sub,
       pet: petId,
       doctor: doctorId,
+      service: serviceId || service || null,
       appointmentDate,
       time,
       reason,
@@ -118,7 +120,8 @@ export const getMyAppointments = async (req: AuthRequest, res: Response) => {
 
     const appointments = await AppointmentModel.find({ user: req.user.sub })
       .populate("pet", "name type breed gender")
-      .populate("doctor", "name specialization workingHours");
+      .populate("doctor", "name specialization workingHours")
+      .populate("service", "name description price durationMinutes");
 
     return res.status(200).json({
       message: "OK",
@@ -136,7 +139,8 @@ export const getAllAppointments = async (_req: AuthRequest, res: Response) => {
     const appointments = await AppointmentModel.find()
       .populate("user", "name email phone")
       .populate("pet", "name type breed")
-      .populate("doctor", "name specialization");
+      .populate("doctor", "name specialization")
+      .populate("service", "name description price durationMinutes");
 
     return res.status(200).json({
       message: "OK",
