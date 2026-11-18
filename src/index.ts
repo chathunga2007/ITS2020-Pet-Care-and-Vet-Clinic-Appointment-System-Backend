@@ -19,9 +19,52 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health Check
-app.get("/", (req: Request, res: Response) => {
-  res.send("Pet Care & Vet Clinic API is Running!");
+let isConnected = false;
+
+async function connectDB() {
+  if (isConnected && mongoose.connection.readyState === 1) {
+    return;
+  }
+  try {
+    const db = await mongoose.connect(URL, {
+      bufferCommands: false,
+    });
+    isConnected = db.connections[0].readyState === 1;
+    console.log("DB Connected!");
+  } catch (error) {
+    console.error("DB Connection Fail: ", error);
+    throw error;
+  }
+}
+
+app.use(async (req: Request, res: Response, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Database connection failed" });
+  }
+});
+
+app.get("/", async (req: Request, res: Response) => {
+  try {
+    const dbState = mongoose.connection.readyState;
+    const dbStatusMap = ["Disconnected", "Connected", "Connecting", "Disconnecting"];
+    const currentStatus = dbStatusMap[dbState] || "Unknown";
+
+    res.status(200).json({
+      success: true,
+      message: "Pet Care & Vet Clinic API is Running!",
+      databaseStatus: currentStatus,
+      timestamp: new Date(),
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "API running, but database check failed",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
 });
 
 // Auth Routes Mount
@@ -33,7 +76,7 @@ app.use("/api/pets", petRoutes);
 // Doctor Routers
 app.use("/api/doctors", doctorRoutes);
 
-// Appoinment Routers
+// Appointment Routers
 app.use("/api/appointments", appointmentRoutes);
 
 // Doctor Schedules Routers
@@ -45,18 +88,11 @@ app.use("/api/services", serviceRoutes);
 // AI Bot Routers Chat
 app.use("/api/ai", aiRouter);
 
-mongoose
-  .connect(URL)
-  .then(() => {
-    console.log("DB Connected!");
-  })
-  .catch((err) => {
-    console.error("DB Fail: ", err);
-  });
-
 if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   });
 }
 
